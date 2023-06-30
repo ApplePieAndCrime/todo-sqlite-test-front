@@ -33,6 +33,8 @@ import {
   SaveAsRounded,
 } from '@mui/icons-material';
 import SaveAsSharpIcon from '@mui/icons-material/SaveAsSharp';
+import { useMemo } from 'react';
+import Table from '../../components/Table';
 
 const TodoPage = () => {
   const [todos, setTodos] = useState([]);
@@ -93,6 +95,30 @@ const TodoPage = () => {
     [selectedId]
   );
 
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'status',
+        accessor: 'status',
+        Cell: ({ cell }) => (
+          <Checkbox
+            edge="start"
+            checked={cell.value}
+            onChange={() => checkTodo(cell.row.original)}
+          />
+        ),
+      },
+      {
+        Header: 'title',
+        accessor: 'title',
+      },
+      {
+        Header: 'actions',
+      },
+    ],
+    []
+  );
+
   useEffect(() => {
     axios
       .get(apiUrl + '/todos/count', { params: { where: { userId: user.sub } } })
@@ -141,7 +167,7 @@ const TodoPage = () => {
             SUBMIT
           </Button>
         </Box>
-        <List sx={{ bgcolor: 'background.paper' }}>
+        {/* <List sx={{ bgcolor: 'background.paper' }}>
           {todos.map(todo => {
             return (
               <Box
@@ -211,7 +237,8 @@ const TodoPage = () => {
               </Box>
             );
           })}
-        </List>
+        </List> */}
+        <Table data={todos} columns={columns} />
         <Pagination
           count={Math.ceil(count / limit)}
           variant="outlined"
