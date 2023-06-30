@@ -9,7 +9,7 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
 
   const sendEmail = async () => {
-    await axios.post(apiUrl + '/auth/forgot-password', { data: { email } });
+    await axios.get(apiUrl + '/auth/forgot-password', { params: { email } });
     navigate('/login');
   };
 

@@ -11,8 +11,7 @@ import {
 } from 'react-router-dom';
 import AuthPage from './pages/Auth/AuthPage';
 import TodoPage from './pages/Todo/TodoPage';
-import { Provider } from 'react-redux';
-import store from './store';
+
 import ForgotPassword from './pages/Auth/ForgotPassword';
 import AuthContext, { AuthContextProvider } from './helpers/AuthContext';
 import ProtectedRoute from './helpers/ProtectedRoute';

@@ -3,30 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-  Routes,
-  useNavigate,
-} from 'react-router-dom';
-import AuthPage from './pages/Auth/AuthPage';
-import TodoPage from './pages/Todo/TodoPage';
-import { Provider } from 'react-redux';
-import store from './store';
-import ForgotPassword from './pages/Auth/ForgotPassword';
-import AuthContext, { AuthContextProvider } from './helpers/AuthContext';
-import ProtectedRoute from './helpers/ProtectedRoute';
-import Logout from './pages/Auth/Logout';
+
+import { AuthContextProvider } from './helpers/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <App />
     </AuthContextProvider>
   </React.StrictMode>
 );

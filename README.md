@@ -1,6 +1,6 @@
 # todo-sqlite-test-back
 
-> https://docs.google.com/document/d/1ssr5s5-qu3aGOK_G8k5GKAx2LZ2X_ey0_uFdq69BHmo/edit
+> POSTMAN: https://api.postman.com/collections/19552705-ab3aa7b8-347a-4a1c-bc21-84d11708c5de?access_key=PMAT-01H45YWVNCH97A9S2Z8MY91GRM
 
 ### Стек:
 

@@ -75,20 +75,23 @@ const TodoPage = () => {
         setSelectedId('io');
       });
     },
-    [selectedTodo]
+    [selectedTodo, selectedId]
   );
 
-  const checkTodo = async todo => {
-    console.log('check todo ', todo);
-    todo.status = !todo.status;
+  const checkTodo = useCallback(
+    async todo => {
+      console.log('check todo ', todo);
+      todo.status = !todo.status;
 
-    await axios
-      .patch(apiUrl + '/todos/' + todo.id, { status: todo.status })
-      .then(res => {
-        console.log('patched ', res.data);
-        setSelectedId(todo.id);
-      });
-  };
+      await axios
+        .patch(apiUrl + '/todos/' + todo.id, { status: todo.status })
+        .then(res => {
+          console.log('patched ', res.data);
+          setSelectedId(todo.id);
+        });
+    },
+    [selectedId]
+  );
 
   useEffect(() => {
     axios
@@ -206,46 +209,6 @@ const TodoPage = () => {
                   </Button>
                 </Box>
               </Box>
-              // <ListItem
-              //   key={todo.id}
-              //   secondaryAction={
-              //     <Box>
-              //       <IconButton
-              //         edge="end"
-              //         onClick={() => setSelectedTodo({ id: todo.id })}
-              //       >
-              //         <ModeIcon />
-              //       </IconButton>
-              //       <IconButton edge="end">
-              //         <DeleteIcon />
-              //       </IconButton>
-              //     </Box>
-              //   }
-              //   disablePadding
-              // >
-              //   <ListItemButton role={undefined} dense>
-              //     <ListItemIcon>
-              //       <Checkbox
-              //         edge="start"
-              //         checked={todo.status}
-              //         onChange={() => checkTodo(todo)}
-              //       />
-              //     </ListItemIcon>
-              //     <Box>
-              //       {selectedTodo.id === todo.id ? (
-              //         <TextField
-              //           value={selectedTodo.title}
-              //           onChange={e =>
-              //             setSelectedTodo({ title: e.target.value })
-              //           }
-              //         />
-              //       ) : (
-              //         <ListItemText primary={todo.title} />
-              //       )}
-              //     </Box>
-              //   </ListItemButton>
-              // </ListItem>
-              // );
             );
           })}
         </List>
